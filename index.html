@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="./styles/index.css" />
+      <title>Stream Widgets by Coding System</title>
+   </head>
+   <body class="body">
+      <div class="global-overlay"></div>
+      <div class="hero-info">
+         <div class="hero-info__background">
+            <div class="hero-info__loadout"></div>
+         </div>
+         <h3 class="hero-info__title"></h3>
+         <video
+            class="hero-info__video"
+            poster=""
+            autoplay=""
+            preload="auto"
+            loop=""
+            playsinline=""
+         >
+            <source type='video/mp4; codecs="hvc1"' src="" />
+            <source type="video/webm" src="" />
+            <img src="" />
+         </video>
+      </div>
+      <div class="nav-panel">
+         <button type="button" class="button go-button">
+            <span class="go-button-text">Go</span>
+         </button>
+         <button type="button" class="button ban-all-button">
+            <span class="ban-all-button-text">БАН</span>
+         </button>
+         <button type="button" class="button unban-all-button">
+            <span class="unban-all-button-text">РАЗБАН</span>
+         </button>
+         <button type="button" class="button reset-button">
+            <span class="reset-button-text">СБРОС</span>
+         </button>
+         <button type="button" class="button history-button">
+            <span class="history-button-text">ИСТОРИЯ</span>
+         </button>
+         <div class="button animation-duration">
+            <input
+               type="range"
+               id="roll-duration-range"
+               min="3.5"
+               max="6.5"
+               step="0.1"
+               value="3"
+               class="roll-duration-range"
+            />
+            <span class="animation-duration-text"></span>
+         </div>
+         <div class="button hidings-count">
+            <input
+               type="range"
+               id="hidings-count-range"
+               min="20"
+               max="50"
+               step="2"
+               value="30"
+               class="hidings-count-range"
+            />
+            <span class="hidings-count-text"></span>
+         </div>
+      </div>
+      <div class="heroes">
+         <ul id="heroes-strength" class="heroes__group"></ul>
+         <ul id="heroes-agility" class="heroes__group"></ul>
+         <ul id="heroes-intelligence" class="heroes__group"></ul>
+         <ul id="heroes-universal" class="heroes__group"></ul>
+      </div>
+      <!-- <div class="hints"></div> -->
+      <!-- <script src="./scripts/node/webSocket.js"></script> -->
+      <script type="module" src="./index.js"></script>
+      <!-- <script type="module" src="./scripts/portraits.js"></script> -->
+
+      <!----------------------->
+      <!-------TEMPLATES------->
+      <!----------------------->
+      <template id="card-hero-template">
+         <li class="heroes__item">
+            <div class="heroes__portrait">
+               <img src="" alt="" class="heroes__image" />
+            </div>
+            <div class="banned-overlay"></div>
+         </li>
+      </template>
+      <template id="hint-template">
+         <div class="hint">
+            <div class="hint__box">
+               <span class="hint__text"></span>
+               <div class="hint__hotkey">
+                  <div class="hint__button">
+                     <span class="hint__button-text_top"></span>
+                     <span class="hint__button-text_bottom"></span>
+                  </div>
+                  <div class="hint__plus">+</div>
+                  <div class="hint__button">
+                     <span class="hint__button-text_top"></span>
+                     <span class="hint__button-text_bottom"></span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </template>
+   </body>
+</html>
