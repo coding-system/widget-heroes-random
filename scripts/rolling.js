@@ -19,7 +19,7 @@ import {
 let TOTAL_ANIMATION_DURATION = getTotalAnimationDuration();
 let HIDINGS_COUNT = getTotalHidingsCount();
 const HIDE_PAGE_DELAY = 4000;
-const AFK_ACCEPT_HERO_DELAY = 15000;
+const AFK_ACCEPT_HERO_DELAY = 30000;
 const FIXED_HEROES_SEQUENCE = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; // Последние 10 скрытий
 let FIXED_PHASES_START = HIDINGS_COUNT - FIXED_HEROES_SEQUENCE.length + 1;
 const MIN_DURATION = 5;
@@ -224,7 +224,7 @@ export function updateHeroInfo() {
    }
 
    if (heroInfoLoadout && currentRandomHero.loadout) {
-      heroInfoLoadout.style.backgroundImage = `url("../assets/heroes/loadout/${currentRandomHero.loadout}")`;
+      heroInfoLoadout.style.backgroundImage = `url("https://widget.cheberem.ru/assets/heroes/loadout/${currentRandomHero.loadout}")`;
    }
 
    if (heroInfoVideo && videoSources?.length >= 2) {

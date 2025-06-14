@@ -28,7 +28,7 @@ html {
    transition: all 0.5s linear;
    &-visible {
       opacity: 1;
-      transition: all 0.05s linear;
+      transition: all 0.25s linear;
       pointer-events: all;
    }
 }
@@ -343,6 +343,7 @@ html {
          // position: relative;
          // top: 0.05em;
          background-color: #3e4853;
+         box-shadow: 0.2em $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
       }
       &:nth-child(31),
       &:nth-child(32),
@@ -371,6 +372,7 @@ html {
          // position: relative;
          top: 0.05em;
          background-color: #39444e;
+         box-shadow: 0.1em $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
       }
       &:nth-child(31),
       &:nth-child(32),
@@ -397,6 +399,7 @@ html {
          // position: relative;
          top: 0.05em;
          background-color: #38454e;
+         box-shadow: 0 $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
       }
       &:nth-child(31),
       &:nth-child(32),
@@ -423,6 +426,7 @@ html {
          // position: relative;
          top: 0.05em;
          background-color: #475966;
+         box-shadow: -0.1em $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
       }
       &:nth-child(21),
       &:nth-child(22),

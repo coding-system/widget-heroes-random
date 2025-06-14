@@ -885,7 +885,7 @@ html {
 }
 .body-visible {
   opacity: 1;
-  transition: all 0.05s linear;
+  transition: all 0.25s linear;
   pointer-events: all;
 }
 
@@ -1194,6 +1194,7 @@ html {
 }
 #heroes-strength .heroes__item::after, #heroes-strength .heroes__item::before {
   background-color: #3e4853;
+  box-shadow: 0.2em 0.3em 0.3em #0c1013;
 }
 #heroes-strength .heroes__item:nth-child(31), #heroes-strength .heroes__item:nth-child(32), #heroes-strength .heroes__item:nth-child(33), #heroes-strength .heroes__item:nth-child(34), #heroes-strength .heroes__item:nth-child(35) {
   padding-top: 0.1em;
@@ -1212,6 +1213,7 @@ html {
 #heroes-agility .heroes__item::after, #heroes-agility .heroes__item::before {
   top: 0.05em;
   background-color: #39444e;
+  box-shadow: 0.1em 0.3em 0.3em #0c1013;
 }
 #heroes-agility .heroes__item:nth-child(31), #heroes-agility .heroes__item:nth-child(32), #heroes-agility .heroes__item:nth-child(33), #heroes-agility .heroes__item:nth-child(34) {
   padding-top: 0.1em;
@@ -1230,6 +1232,7 @@ html {
 #heroes-intelligence .heroes__item::after, #heroes-intelligence .heroes__item::before {
   top: 0.05em;
   background-color: #38454e;
+  box-shadow: 0 0.3em 0.3em #0c1013;
 }
 #heroes-intelligence .heroes__item:nth-child(31), #heroes-intelligence .heroes__item:nth-child(32), #heroes-intelligence .heroes__item:nth-child(33), #heroes-intelligence .heroes__item:nth-child(34) {
   padding-top: 0.1em;
@@ -1248,6 +1251,7 @@ html {
 #heroes-universal .heroes__item::after, #heroes-universal .heroes__item::before {
   top: 0.05em;
   background-color: #475966;
+  box-shadow: -0.1em 0.3em 0.3em #0c1013;
 }
 #heroes-universal .heroes__item:nth-child(21), #heroes-universal .heroes__item:nth-child(22), #heroes-universal .heroes__item:nth-child(23) {
   padding-top: 0.1em;
