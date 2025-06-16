@@ -27,13 +27,13 @@ import {
    loadDurationFromStorage,
    loadHidingsCountFromStorage,
 } from "./scripts/localstorage.js";
-
+// import { hints, createHint, initHints, showHint } from "./scripts/hints.js";
 import {
    loadBannedHistory,
    createChellangeHeroes,
 } from "./scripts/bannedHistory.js";
 
-export let currentHeroesList = [];  
+export let currentHeroesList = [];
 export let playedHeroesList = [];
 
 // Загружаем героев при старте

@@ -4,6 +4,7 @@
 @import "animations.scss";
 @import "portraits.scss";
 @import "hint.scss";
+@import "heroesShadows.scss";
 
 html {
    font-size: 10px;
@@ -343,7 +344,7 @@ html {
          // position: relative;
          // top: 0.05em;
          background-color: #3e4853;
-         box-shadow: 0.2em $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
+         // box-shadow: 0.2em $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
       }
       &:nth-child(31),
       &:nth-child(32),
@@ -372,7 +373,7 @@ html {
          // position: relative;
          top: 0.05em;
          background-color: #39444e;
-         box-shadow: 0.1em $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
+         // box-shadow: 0.1em $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
       }
       &:nth-child(31),
       &:nth-child(32),
@@ -399,7 +400,7 @@ html {
          // position: relative;
          top: 0.05em;
          background-color: #38454e;
-         box-shadow: 0 $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
+         // box-shadow: 0 $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
       }
       &:nth-child(31),
       &:nth-child(32),
@@ -426,7 +427,8 @@ html {
          // position: relative;
          top: 0.05em;
          background-color: #475966;
-         box-shadow: -0.1em $heroes_item_shadow-y 0.3em $heroes_item_shadow-color;
+         // box-shadow: -0.1em $heroes_item_shadow-y 0.3em
+         //    $heroes_item_shadow-color;
       }
       &:nth-child(21),
       &:nth-child(22),
@@ -600,7 +602,7 @@ html {
       transition: all #{$trns-default}s ease;
       &-banned {
          transition: all #{$trns-banned}s ease;
-         filter: grayscale(1) brightness(0.5) contrast(0.75) blur(0em);
+         filter: grayscale(0.75) brightness(0.5) contrast(0.75) blur(0em);
       }
       &-involved {
          transition: all #{$trns-involved}s ease;

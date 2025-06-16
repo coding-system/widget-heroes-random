@@ -762,7 +762,7 @@ ol {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0.5em;
   border-radius: 1.5em;
-  opacity: 0;
+  opacity: 1;
   transform: translateX(-2em);
   transition: all 0.3s ease;
 }
@@ -862,6 +862,76 @@ ol {
 
 #hint_reroll {
   top: 16em;
+}
+
+#heroes-strength .heroes__item:nth-child(1)::after, #heroes-strength .heroes__item:nth-child(1)::before, #heroes-strength .heroes__item:nth-child(7)::after, #heroes-strength .heroes__item:nth-child(7)::before, #heroes-strength .heroes__item:nth-child(13)::after, #heroes-strength .heroes__item:nth-child(13)::before, #heroes-strength .heroes__item:nth-child(19)::after, #heroes-strength .heroes__item:nth-child(19)::before, #heroes-strength .heroes__item:nth-child(25)::after, #heroes-strength .heroes__item:nth-child(25)::before, #heroes-strength .heroes__item:nth-child(31)::after, #heroes-strength .heroes__item:nth-child(31)::before {
+  box-shadow: calc(-0.225em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-strength .heroes__item:nth-child(2)::after, #heroes-strength .heroes__item:nth-child(2)::before, #heroes-strength .heroes__item:nth-child(8)::after, #heroes-strength .heroes__item:nth-child(8)::before, #heroes-strength .heroes__item:nth-child(14)::after, #heroes-strength .heroes__item:nth-child(14)::before, #heroes-strength .heroes__item:nth-child(20)::after, #heroes-strength .heroes__item:nth-child(20)::before, #heroes-strength .heroes__item:nth-child(26)::after, #heroes-strength .heroes__item:nth-child(26)::before, #heroes-strength .heroes__item:nth-child(32)::after, #heroes-strength .heroes__item:nth-child(32)::before {
+  box-shadow: calc(-0.21em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-strength .heroes__item:nth-child(3)::after, #heroes-strength .heroes__item:nth-child(3)::before, #heroes-strength .heroes__item:nth-child(9)::after, #heroes-strength .heroes__item:nth-child(9)::before, #heroes-strength .heroes__item:nth-child(15)::after, #heroes-strength .heroes__item:nth-child(15)::before, #heroes-strength .heroes__item:nth-child(21)::after, #heroes-strength .heroes__item:nth-child(21)::before, #heroes-strength .heroes__item:nth-child(27)::after, #heroes-strength .heroes__item:nth-child(27)::before, #heroes-strength .heroes__item:nth-child(33)::after, #heroes-strength .heroes__item:nth-child(33)::before {
+  box-shadow: calc(-0.195em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-strength .heroes__item:nth-child(4)::after, #heroes-strength .heroes__item:nth-child(4)::before, #heroes-strength .heroes__item:nth-child(10)::after, #heroes-strength .heroes__item:nth-child(10)::before, #heroes-strength .heroes__item:nth-child(16)::after, #heroes-strength .heroes__item:nth-child(16)::before, #heroes-strength .heroes__item:nth-child(22)::after, #heroes-strength .heroes__item:nth-child(22)::before, #heroes-strength .heroes__item:nth-child(28)::after, #heroes-strength .heroes__item:nth-child(28)::before, #heroes-strength .heroes__item:nth-child(34)::after, #heroes-strength .heroes__item:nth-child(34)::before {
+  box-shadow: calc(-0.18em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-strength .heroes__item:nth-child(5)::after, #heroes-strength .heroes__item:nth-child(5)::before, #heroes-strength .heroes__item:nth-child(11)::after, #heroes-strength .heroes__item:nth-child(11)::before, #heroes-strength .heroes__item:nth-child(17)::after, #heroes-strength .heroes__item:nth-child(17)::before, #heroes-strength .heroes__item:nth-child(23)::after, #heroes-strength .heroes__item:nth-child(23)::before, #heroes-strength .heroes__item:nth-child(29)::after, #heroes-strength .heroes__item:nth-child(29)::before, #heroes-strength .heroes__item:nth-child(35)::after, #heroes-strength .heroes__item:nth-child(35)::before {
+  box-shadow: calc(-0.165em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-strength .heroes__item:nth-child(6)::after, #heroes-strength .heroes__item:nth-child(6)::before, #heroes-strength .heroes__item:nth-child(12)::after, #heroes-strength .heroes__item:nth-child(12)::before, #heroes-strength .heroes__item:nth-child(18)::after, #heroes-strength .heroes__item:nth-child(18)::before, #heroes-strength .heroes__item:nth-child(24)::after, #heroes-strength .heroes__item:nth-child(24)::before, #heroes-strength .heroes__item:nth-child(30)::after, #heroes-strength .heroes__item:nth-child(30)::before, #heroes-strength .heroes__item:nth-child(36)::after, #heroes-strength .heroes__item:nth-child(36)::before {
+  box-shadow: calc(-0.15em - 0.015em) 0.3em 0.3em #0c1013;
+}
+
+#heroes-agility .heroes__item:nth-child(1)::after, #heroes-agility .heroes__item:nth-child(1)::before, #heroes-agility .heroes__item:nth-child(7)::after, #heroes-agility .heroes__item:nth-child(7)::before, #heroes-agility .heroes__item:nth-child(13)::after, #heroes-agility .heroes__item:nth-child(13)::before, #heroes-agility .heroes__item:nth-child(19)::after, #heroes-agility .heroes__item:nth-child(19)::before, #heroes-agility .heroes__item:nth-child(25)::after, #heroes-agility .heroes__item:nth-child(25)::before, #heroes-agility .heroes__item:nth-child(31)::after, #heroes-agility .heroes__item:nth-child(31)::before {
+  box-shadow: calc(-0.135em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-agility .heroes__item:nth-child(2)::after, #heroes-agility .heroes__item:nth-child(2)::before, #heroes-agility .heroes__item:nth-child(8)::after, #heroes-agility .heroes__item:nth-child(8)::before, #heroes-agility .heroes__item:nth-child(14)::after, #heroes-agility .heroes__item:nth-child(14)::before, #heroes-agility .heroes__item:nth-child(20)::after, #heroes-agility .heroes__item:nth-child(20)::before, #heroes-agility .heroes__item:nth-child(26)::after, #heroes-agility .heroes__item:nth-child(26)::before, #heroes-agility .heroes__item:nth-child(32)::after, #heroes-agility .heroes__item:nth-child(32)::before {
+  box-shadow: calc(-0.12em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-agility .heroes__item:nth-child(3)::after, #heroes-agility .heroes__item:nth-child(3)::before, #heroes-agility .heroes__item:nth-child(9)::after, #heroes-agility .heroes__item:nth-child(9)::before, #heroes-agility .heroes__item:nth-child(15)::after, #heroes-agility .heroes__item:nth-child(15)::before, #heroes-agility .heroes__item:nth-child(21)::after, #heroes-agility .heroes__item:nth-child(21)::before, #heroes-agility .heroes__item:nth-child(27)::after, #heroes-agility .heroes__item:nth-child(27)::before, #heroes-agility .heroes__item:nth-child(33)::after, #heroes-agility .heroes__item:nth-child(33)::before {
+  box-shadow: calc(-0.105em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-agility .heroes__item:nth-child(4)::after, #heroes-agility .heroes__item:nth-child(4)::before, #heroes-agility .heroes__item:nth-child(10)::after, #heroes-agility .heroes__item:nth-child(10)::before, #heroes-agility .heroes__item:nth-child(16)::after, #heroes-agility .heroes__item:nth-child(16)::before, #heroes-agility .heroes__item:nth-child(22)::after, #heroes-agility .heroes__item:nth-child(22)::before, #heroes-agility .heroes__item:nth-child(28)::after, #heroes-agility .heroes__item:nth-child(28)::before, #heroes-agility .heroes__item:nth-child(34)::after, #heroes-agility .heroes__item:nth-child(34)::before {
+  box-shadow: calc(-0.09em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-agility .heroes__item:nth-child(5)::after, #heroes-agility .heroes__item:nth-child(5)::before, #heroes-agility .heroes__item:nth-child(11)::after, #heroes-agility .heroes__item:nth-child(11)::before, #heroes-agility .heroes__item:nth-child(17)::after, #heroes-agility .heroes__item:nth-child(17)::before, #heroes-agility .heroes__item:nth-child(23)::after, #heroes-agility .heroes__item:nth-child(23)::before, #heroes-agility .heroes__item:nth-child(29)::after, #heroes-agility .heroes__item:nth-child(29)::before, #heroes-agility .heroes__item:nth-child(35)::after, #heroes-agility .heroes__item:nth-child(35)::before {
+  box-shadow: calc(-0.075em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-agility .heroes__item:nth-child(6)::after, #heroes-agility .heroes__item:nth-child(6)::before, #heroes-agility .heroes__item:nth-child(12)::after, #heroes-agility .heroes__item:nth-child(12)::before, #heroes-agility .heroes__item:nth-child(18)::after, #heroes-agility .heroes__item:nth-child(18)::before, #heroes-agility .heroes__item:nth-child(24)::after, #heroes-agility .heroes__item:nth-child(24)::before, #heroes-agility .heroes__item:nth-child(30)::after, #heroes-agility .heroes__item:nth-child(30)::before, #heroes-agility .heroes__item:nth-child(36)::after, #heroes-agility .heroes__item:nth-child(36)::before {
+  box-shadow: calc(-0.06em - 0.015em) 0.3em 0.3em #0c1013;
+}
+
+#heroes-intelligence .heroes__item:nth-child(1)::after, #heroes-intelligence .heroes__item:nth-child(1)::before, #heroes-intelligence .heroes__item:nth-child(7)::after, #heroes-intelligence .heroes__item:nth-child(7)::before, #heroes-intelligence .heroes__item:nth-child(13)::after, #heroes-intelligence .heroes__item:nth-child(13)::before, #heroes-intelligence .heroes__item:nth-child(19)::after, #heroes-intelligence .heroes__item:nth-child(19)::before, #heroes-intelligence .heroes__item:nth-child(25)::after, #heroes-intelligence .heroes__item:nth-child(25)::before, #heroes-intelligence .heroes__item:nth-child(31)::after, #heroes-intelligence .heroes__item:nth-child(31)::before {
+  box-shadow: calc(-0.045em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-intelligence .heroes__item:nth-child(2)::after, #heroes-intelligence .heroes__item:nth-child(2)::before, #heroes-intelligence .heroes__item:nth-child(8)::after, #heroes-intelligence .heroes__item:nth-child(8)::before, #heroes-intelligence .heroes__item:nth-child(14)::after, #heroes-intelligence .heroes__item:nth-child(14)::before, #heroes-intelligence .heroes__item:nth-child(20)::after, #heroes-intelligence .heroes__item:nth-child(20)::before, #heroes-intelligence .heroes__item:nth-child(26)::after, #heroes-intelligence .heroes__item:nth-child(26)::before, #heroes-intelligence .heroes__item:nth-child(32)::after, #heroes-intelligence .heroes__item:nth-child(32)::before {
+  box-shadow: calc(-0.03em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-intelligence .heroes__item:nth-child(3)::after, #heroes-intelligence .heroes__item:nth-child(3)::before, #heroes-intelligence .heroes__item:nth-child(9)::after, #heroes-intelligence .heroes__item:nth-child(9)::before, #heroes-intelligence .heroes__item:nth-child(15)::after, #heroes-intelligence .heroes__item:nth-child(15)::before, #heroes-intelligence .heroes__item:nth-child(21)::after, #heroes-intelligence .heroes__item:nth-child(21)::before, #heroes-intelligence .heroes__item:nth-child(27)::after, #heroes-intelligence .heroes__item:nth-child(27)::before, #heroes-intelligence .heroes__item:nth-child(33)::after, #heroes-intelligence .heroes__item:nth-child(33)::before {
+  box-shadow: calc(-0.015em - 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-intelligence .heroes__item:nth-child(4)::after, #heroes-intelligence .heroes__item:nth-child(4)::before, #heroes-intelligence .heroes__item:nth-child(10)::after, #heroes-intelligence .heroes__item:nth-child(10)::before, #heroes-intelligence .heroes__item:nth-child(16)::after, #heroes-intelligence .heroes__item:nth-child(16)::before, #heroes-intelligence .heroes__item:nth-child(22)::after, #heroes-intelligence .heroes__item:nth-child(22)::before, #heroes-intelligence .heroes__item:nth-child(28)::after, #heroes-intelligence .heroes__item:nth-child(28)::before, #heroes-intelligence .heroes__item:nth-child(34)::after, #heroes-intelligence .heroes__item:nth-child(34)::before {
+  box-shadow: 0 0.3em 0.3em #0c1013;
+}
+#heroes-intelligence .heroes__item:nth-child(5)::after, #heroes-intelligence .heroes__item:nth-child(5)::before, #heroes-intelligence .heroes__item:nth-child(11)::after, #heroes-intelligence .heroes__item:nth-child(11)::before, #heroes-intelligence .heroes__item:nth-child(17)::after, #heroes-intelligence .heroes__item:nth-child(17)::before, #heroes-intelligence .heroes__item:nth-child(23)::after, #heroes-intelligence .heroes__item:nth-child(23)::before, #heroes-intelligence .heroes__item:nth-child(29)::after, #heroes-intelligence .heroes__item:nth-child(29)::before, #heroes-intelligence .heroes__item:nth-child(35)::after, #heroes-intelligence .heroes__item:nth-child(35)::before {
+  box-shadow: calc(0.015em + 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-intelligence .heroes__item:nth-child(6)::after, #heroes-intelligence .heroes__item:nth-child(6)::before, #heroes-intelligence .heroes__item:nth-child(12)::after, #heroes-intelligence .heroes__item:nth-child(12)::before, #heroes-intelligence .heroes__item:nth-child(18)::after, #heroes-intelligence .heroes__item:nth-child(18)::before, #heroes-intelligence .heroes__item:nth-child(24)::after, #heroes-intelligence .heroes__item:nth-child(24)::before, #heroes-intelligence .heroes__item:nth-child(30)::after, #heroes-intelligence .heroes__item:nth-child(30)::before, #heroes-intelligence .heroes__item:nth-child(36)::after, #heroes-intelligence .heroes__item:nth-child(36)::before {
+  box-shadow: calc(0.03em + 0.015em) 0.3em 0.3em #0c1013;
+}
+
+#heroes-universal .heroes__item:nth-child(1)::after, #heroes-universal .heroes__item:nth-child(1)::before, #heroes-universal .heroes__item:nth-child(5)::after, #heroes-universal .heroes__item:nth-child(5)::before, #heroes-universal .heroes__item:nth-child(9)::after, #heroes-universal .heroes__item:nth-child(9)::before, #heroes-universal .heroes__item:nth-child(13)::after, #heroes-universal .heroes__item:nth-child(13)::before, #heroes-universal .heroes__item:nth-child(17)::after, #heroes-universal .heroes__item:nth-child(17)::before, #heroes-universal .heroes__item:nth-child(21)::after, #heroes-universal .heroes__item:nth-child(21)::before {
+  box-shadow: calc(0.045em + 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-universal .heroes__item:nth-child(2)::after, #heroes-universal .heroes__item:nth-child(2)::before, #heroes-universal .heroes__item:nth-child(6)::after, #heroes-universal .heroes__item:nth-child(6)::before, #heroes-universal .heroes__item:nth-child(10)::after, #heroes-universal .heroes__item:nth-child(10)::before, #heroes-universal .heroes__item:nth-child(14)::after, #heroes-universal .heroes__item:nth-child(14)::before, #heroes-universal .heroes__item:nth-child(18)::after, #heroes-universal .heroes__item:nth-child(18)::before, #heroes-universal .heroes__item:nth-child(22)::after, #heroes-universal .heroes__item:nth-child(22)::before {
+  box-shadow: calc(0.06em + 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-universal .heroes__item:nth-child(3)::after, #heroes-universal .heroes__item:nth-child(3)::before, #heroes-universal .heroes__item:nth-child(7)::after, #heroes-universal .heroes__item:nth-child(7)::before, #heroes-universal .heroes__item:nth-child(11)::after, #heroes-universal .heroes__item:nth-child(11)::before, #heroes-universal .heroes__item:nth-child(15)::after, #heroes-universal .heroes__item:nth-child(15)::before, #heroes-universal .heroes__item:nth-child(19)::after, #heroes-universal .heroes__item:nth-child(19)::before, #heroes-universal .heroes__item:nth-child(23)::after, #heroes-universal .heroes__item:nth-child(23)::before {
+  box-shadow: calc(0.075em + 0.015em) 0.3em 0.3em #0c1013;
+}
+#heroes-universal .heroes__item:nth-child(4)::after, #heroes-universal .heroes__item:nth-child(4)::before, #heroes-universal .heroes__item:nth-child(8)::after, #heroes-universal .heroes__item:nth-child(8)::before, #heroes-universal .heroes__item:nth-child(12)::after, #heroes-universal .heroes__item:nth-child(12)::before, #heroes-universal .heroes__item:nth-child(16)::after, #heroes-universal .heroes__item:nth-child(16)::before, #heroes-universal .heroes__item:nth-child(20)::after, #heroes-universal .heroes__item:nth-child(20)::before {
+  box-shadow: calc(0.09em + 0.015em) 0.3em 0.3em #0c1013;
 }
 
 html {
@@ -1194,7 +1264,6 @@ html {
 }
 #heroes-strength .heroes__item::after, #heroes-strength .heroes__item::before {
   background-color: #3e4853;
-  box-shadow: 0.2em 0.3em 0.3em #0c1013;
 }
 #heroes-strength .heroes__item:nth-child(31), #heroes-strength .heroes__item:nth-child(32), #heroes-strength .heroes__item:nth-child(33), #heroes-strength .heroes__item:nth-child(34), #heroes-strength .heroes__item:nth-child(35) {
   padding-top: 0.1em;
@@ -1213,7 +1282,6 @@ html {
 #heroes-agility .heroes__item::after, #heroes-agility .heroes__item::before {
   top: 0.05em;
   background-color: #39444e;
-  box-shadow: 0.1em 0.3em 0.3em #0c1013;
 }
 #heroes-agility .heroes__item:nth-child(31), #heroes-agility .heroes__item:nth-child(32), #heroes-agility .heroes__item:nth-child(33), #heroes-agility .heroes__item:nth-child(34) {
   padding-top: 0.1em;
@@ -1232,7 +1300,6 @@ html {
 #heroes-intelligence .heroes__item::after, #heroes-intelligence .heroes__item::before {
   top: 0.05em;
   background-color: #38454e;
-  box-shadow: 0 0.3em 0.3em #0c1013;
 }
 #heroes-intelligence .heroes__item:nth-child(31), #heroes-intelligence .heroes__item:nth-child(32), #heroes-intelligence .heroes__item:nth-child(33), #heroes-intelligence .heroes__item:nth-child(34) {
   padding-top: 0.1em;
@@ -1251,7 +1318,6 @@ html {
 #heroes-universal .heroes__item::after, #heroes-universal .heroes__item::before {
   top: 0.05em;
   background-color: #475966;
-  box-shadow: -0.1em 0.3em 0.3em #0c1013;
 }
 #heroes-universal .heroes__item:nth-child(21), #heroes-universal .heroes__item:nth-child(22), #heroes-universal .heroes__item:nth-child(23) {
   padding-top: 0.1em;
@@ -1394,7 +1460,7 @@ html {
 }
 .heroes__image-banned {
   transition: all 0.05s ease;
-  filter: grayscale(1) brightness(0.5) contrast(0.75) blur(0em);
+  filter: grayscale(0.75) brightness(0.5) contrast(0.75) blur(0em);
 }
 .heroes__image-involved {
   transition: all 0.3s ease;
