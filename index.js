@@ -19,6 +19,7 @@ import {
    acceptChosenHero,
    resetRollStyles,
    handleKeyPressRoll,
+   resetHidePageTimer,
 } from "./scripts/rolling.js";
 
 import {
@@ -35,6 +36,7 @@ import {
 
 export let currentHeroesList = [];
 export let playedHeroesList = [];
+export const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
 
 // Загружаем героев при старте
 window.addEventListener("DOMContentLoaded", async () => {
@@ -42,7 +44,7 @@ window.addEventListener("DOMContentLoaded", async () => {
    if (loadedHeroes) {
       currentHeroesList = loadedHeroes;
    } else {
-      currentHeroesList = JSON.parse(JSON.stringify(startHeroes));
+      currentHeroesList = startHeroes;
       saveHeroesToLocalStorage(currentHeroesList);
    }
    renderHeroes(currentHeroesList);
@@ -52,8 +54,6 @@ window.addEventListener("DOMContentLoaded", async () => {
    playedHeroesList = await loadBannedHistory();
    console.log("Загруженный список сыгранных героев:", playedHeroesList);
 });
-
-export const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
 
 console.log(startHeroes);
 
@@ -72,20 +72,24 @@ const historyButton = document.querySelector(".history-button");
 goBtn.addEventListener("click", () => {
    chooseRandomHero(currentHeroesList);
    runAnimation(currentHeroesList);
+   resetHidePageTimer();
 });
 
 banAllButton.addEventListener("click", () => {
-   updateAllHeroes(currentHeroesList, true);
+   updateAllHeroes(currentHeroesList, false);
+   resetHidePageTimer();
    console.log("Все герои забанены");
 });
 
 unbanAllButton.addEventListener("click", () => {
-   updateAllHeroes(currentHeroesList, false);
+   updateAllHeroes(currentHeroesList, true);
+   resetHidePageTimer();
    console.log("Все герои разбанены");
 });
 resetButton.addEventListener("click", () => {
    resetLocalStorage();
    updateAllHeroes(currentHeroesList, true);
+   resetHidePageTimer();
    console.log("Все данные сброшены");
 });
 
@@ -93,7 +97,8 @@ historyButton.addEventListener("click", () => {
    const chellangeHeroes = createChellangeHeroes(startHeroes, playedHeroesList);
    currentHeroesList = chellangeHeroes;
    saveHeroesToLocalStorage(currentHeroesList);
-   renderHeroes(currentHeroesList); // Перерисовываем все карточки
+   renderHeroes(currentHeroesList);
+   resetHidePageTimer();
    console.log("Применены баны из истории");
 });
 
@@ -106,6 +111,7 @@ document.addEventListener("keyup", function (event) {
       if (!pageBody.classList.contains("body-visible")) {
          pageBody.classList.add("body-visible");
       }
+      resetHidePageTimer();
    }
 });
 
@@ -113,6 +119,7 @@ document.addEventListener("keyup", function (event) {
    const key = event.key.toLowerCase();
    if (key === "f" || key === "а") {
       pageBody.classList.toggle("body-visible");
+      resetHidePageTimer();
    }
 });
 
@@ -120,7 +127,11 @@ document.addEventListener("keyup", function (event) {
 
 function resetLocalStorage() {
    localStorage.clear();
-   console.log("Весь localStorage очищен!");
+   currentHeroesList = JSON.parse(JSON.stringify(startHeroes));
+   saveHeroesToLocalStorage(currentHeroesList);
+   console.log(
+      "Весь localStorage очищен и герои сброшены к начальному состоянию!"
+   );
 }
 
 let timeoutId = null; // Переменная для хранения ID таймаута

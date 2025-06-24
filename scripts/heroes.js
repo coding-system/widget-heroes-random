@@ -552,7 +552,7 @@ export const initialHeroes = [
       loadout: "loadout_bg_outworld_002.jpg",
    },
    {
-      name: "Nyx",
+      name: "Nyx Assassin",
       image: "nyx_assassin.jpg",
       id: 69,
       attribute: "universal",
@@ -744,7 +744,7 @@ export const initialHeroes = [
       loadout: "loadout_bg_sky_001.jpg",
    },
    {
-      name: "Wraith king",
+      name: "Wraith King",
       image: "skeleton_king.jpg",
       id: 92,
       attribute: "strength",

@@ -30,6 +30,14 @@ let hidePageTimeoutId = null;
 let acceptHeroTimeoutId = null;
 let phaseData = []; // Массив для хранения объектов { duration, heroesPerStep }
 
+// Функция для сброса и перезапуска таймера скрытия страницы
+export function resetHidePageTimer() {
+   if (hidePageTimeoutId) {
+      clearTimeout(hidePageTimeoutId);
+   }
+   hidePageTimeoutId = setTimeout(() => hidePageBody(0), HIDE_PAGE_DELAY);
+}
+
 // Функция для обновления настроек
 export function updateRollingSettings() {
    TOTAL_ANIMATION_DURATION = getTotalAnimationDuration();
@@ -146,7 +154,7 @@ export function highlightFinalHero() {
 
    document.addEventListener("keyup", handleKeyPressOptions);
 
-   hidePageTimeoutId = setTimeout(() => hidePageBody(0), HIDE_PAGE_DELAY);
+   resetHidePageTimer();
    acceptHeroTimeoutId = setTimeout(() => {
       acceptChosenHero();
       resetRollStyles();
