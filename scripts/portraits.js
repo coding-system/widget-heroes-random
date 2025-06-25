@@ -110,5 +110,3 @@ export function updateHeroDisplay(hero, card, image, overlay) {
       card.classList.add("heroes__item-banned");
    }
 }
-
-

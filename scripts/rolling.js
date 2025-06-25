@@ -16,8 +16,10 @@ import {
    getTotalHidingsCount,
 } from "./localstorage.js";
 // Объявляем переменные в начале файла (используем let, чтобы можно было обновлять)
-let TOTAL_ANIMATION_DURATION = getTotalAnimationDuration();
-let HIDINGS_COUNT = getTotalHidingsCount();
+// let TOTAL_ANIMATION_DURATION = getTotalAnimationDuration();
+let TOTAL_ANIMATION_DURATION = 6500;
+// let HIDINGS_COUNT = getTotalHidingsCount();
+let HIDINGS_COUNT = 30;
 const HIDE_PAGE_DELAY = 4000;
 const AFK_ACCEPT_HERO_DELAY = 30000;
 const FIXED_HEROES_SEQUENCE = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; // Последние 10 скрытий
