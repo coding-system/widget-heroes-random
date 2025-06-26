@@ -113,6 +113,7 @@ html {
    margin-left: 5em;
    display: flex;
    gap: 2em;
+   display: none;
    &-text {
       text-align: right;
       font-size: 2em;
@@ -126,6 +127,7 @@ html {
    margin-left: 5em;
    display: flex;
    gap: 2em;
+   display: none;
    &-text {
       text-align: right;
       font-size: 2em;
@@ -136,6 +138,7 @@ html {
 }
 
 .go-button {
+   display: none;
    &:hover {
       background-color: rgba(2, 125, 226, 0.5);
    }

@@ -123,8 +123,6 @@ document.addEventListener("keyup", function (event) {
    }
 });
 
-// document.addEventListener("DOMContentLoaded", initHints);
-
 function resetLocalStorage() {
    localStorage.clear();
    currentHeroesList = JSON.parse(JSON.stringify(startHeroes));
@@ -161,12 +159,9 @@ export function hidePageBody(delay = 0) {
       }, delay);
    } else {
       pageBody.classList.remove("body-visible");
+      navPanel.classList.remove("nav-panel-visible");
    }
 }
 
 loadHidingsCountFromStorage();
 loadDurationFromStorage();
-
-// console.log(TOTAL_ANIMATION_DURATION)
-
-// console.log(TOTAL_ANIMATION_DURATION)
