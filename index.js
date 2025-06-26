@@ -63,8 +63,8 @@ let lastChosenItem = null;
 const pageBody = document.querySelector(".body");
 export const navPanel = document.querySelector(".nav-panel");
 const goBtn = document.querySelector(".go-button");
-const banAllButton = document.querySelector(".unban-all-button");
-const unbanAllButton = document.querySelector(".ban-all-button");
+const banAllButton = document.querySelector(".ban-all-button");
+const unbanAllButton = document.querySelector(".unban-all-button");
 const resetButton = document.querySelector(".reset-button");
 const historyButton = document.querySelector(".history-button");
 
