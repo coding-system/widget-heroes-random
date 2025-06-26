@@ -29,10 +29,7 @@ import {
    loadHidingsCountFromStorage,
 } from "./scripts/localstorage.js";
 // import { hints, createHint, initHints, showHint } from "./scripts/hints.js";
-import {
-   loadBannedHistory,
-   createChellangeHeroes,
-} from "./scripts/bannedHistory.js";
+import { createChellangeHeroes } from "./scripts/bannedHistory.js";
 
 export let currentHeroesList = [];
 export let playedHeroesList = [];
@@ -50,9 +47,22 @@ window.addEventListener("DOMContentLoaded", async () => {
    renderHeroes(currentHeroesList);
    showPageBody(200);
 
-   // Загружаем playedHeroesList из bannedHistory.json
-   playedHeroesList = await loadBannedHistory();
-   console.log("Загруженный список сыгранных героев:", playedHeroesList);
+   // Ждем инициализации autoHeroTracker и загружаем автоматически забаненных героев
+   // playedHeroesList теперь будет содержать автоматически забаненных героев
+   setTimeout(async () => {
+      if (window.autoHeroTracker) {
+         playedHeroesList = window.autoHeroTracker.getAutoBannedHeroes();
+         console.log(
+            "Загруженный список автоматически забаненных героев:",
+            playedHeroesList
+         );
+      } else {
+         console.log(
+            "AutoHeroTracker еще не инициализирован, используем пустой список"
+         );
+         playedHeroesList = [];
+      }
+   }, 1000); // Даем время на инициализацию autoHeroTracker
 });
 
 console.log(startHeroes);
@@ -94,12 +104,8 @@ resetButton.addEventListener("click", () => {
 });
 
 historyButton.addEventListener("click", () => {
-   const chellangeHeroes = createChellangeHeroes(startHeroes, playedHeroesList);
-   currentHeroesList = chellangeHeroes;
-   saveHeroesToLocalStorage(currentHeroesList);
-   renderHeroes(currentHeroesList);
-   resetHidePageTimer();
-   console.log("Применены баны из истории");
+   // Применяем баны из автоматически забаненных героев
+   applyAutoBannedHeroes();
 });
 
 document.addEventListener("keyup", handleKeyPressRoll);
@@ -165,3 +171,47 @@ export function hidePageBody(delay = 0) {
 
 loadHidingsCountFromStorage();
 loadDurationFromStorage();
+
+// Функция для обновления списка автоматически забаненных героев
+export function updateAutoBannedHeroesList() {
+   if (window.autoHeroTracker) {
+      playedHeroesList = window.autoHeroTracker.getAutoBannedHeroes();
+      console.log(
+         "📋 Список автоматически забаненных героев обновлен:",
+         playedHeroesList
+      );
+      return playedHeroesList;
+   } else {
+      console.log("❌ AutoHeroTracker не доступен");
+      return [];
+   }
+}
+
+// Функция для принудительного применения банов из автоматически забаненных героев
+export function applyAutoBannedHeroes() {
+   // Обновляем список автоматически забаненных героев
+   const currentAutoBannedHeroes = updateAutoBannedHeroesList();
+
+   // Применяем баны
+   const chellangeHeroes = createChellangeHeroes(
+      startHeroes,
+      currentAutoBannedHeroes
+   );
+   currentHeroesList = chellangeHeroes;
+   saveHeroesToLocalStorage(currentHeroesList);
+   renderHeroes(currentHeroesList);
+   resetHidePageTimer();
+
+   console.log("✅ Применены баны из автоматически забаненных героев");
+   console.log(`📊 Забаннено героев: ${currentAutoBannedHeroes.length}`);
+
+   return currentAutoBannedHeroes;
+}
+
+// Экспортируем функцию в window для использования в консоли
+window.applyAutoBannedHeroes = applyAutoBannedHeroes;
+
+// Экспортируем функцию в window для использования в консоли
+window.updateAutoBannedHeroesList = updateAutoBannedHeroesList;
+
+console.log(startHeroes);

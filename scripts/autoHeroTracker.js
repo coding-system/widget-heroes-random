@@ -16,6 +16,7 @@ class AutoHeroTracker {
    // Инициализация трекера
    async init() {
       console.log("🚀 Инициализация AutoHeroTracker...");
+
       await this.loadAutoBannedHeroes();
       await this.checkForNewMatches();
       this.startPeriodicCheck();
@@ -196,7 +197,7 @@ class AutoHeroTracker {
          87: "Disruptor",
          88: "Nyx Assassin",
          89: "Naga Siren",
-         90: "Keeper of the Light",
+         90: "Keeper of the light",
          91: "IO",
          92: "Visage",
          93: "Slark",
@@ -214,7 +215,7 @@ class AutoHeroTracker {
          105: "Techies",
          106: "Ember Spirit",
          107: "Earth Spirit",
-         108: "Abyssal Underlord",
+         108: "Underlord",
          109: "Terrorblade",
          110: "Phoenix",
          111: "Oracle",
@@ -228,11 +229,12 @@ class AutoHeroTracker {
          126: "Void Spirit",
          128: "Snapfire",
          129: "Mars",
+         131: "Ringmaster",
          135: "Dawnbreaker",
          136: "Marci",
          137: "Primal Beast",
          138: "Muerta",
-         139: "Ringmaster",
+         145: "Kez",
       };
 
       return heroNames[heroId] || `Unknown Hero (${heroId})`;
