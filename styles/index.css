@@ -1015,7 +1015,8 @@ html {
 .ban-all-button,
 .unban-all-button,
 .reset-button,
-.history-button {
+.history-button,
+.accept-id-button {
   cursor: url("../assets/icons/default.png"), auto;
   display: flex;
   justify-content: center;
@@ -1037,7 +1038,8 @@ html {
 .ban-all-button-text,
 .unban-all-button-text,
 .reset-button-text,
-.history-button-text {
+.history-button-text,
+.accept-id-button-text {
   font-size: 2em;
   font-weight: bold;
   text-transform: uppercase;
@@ -1049,7 +1051,8 @@ html {
 .ban-all-button:hover,
 .unban-all-button:hover,
 .reset-button:hover,
-.history-button:hover {
+.history-button:hover,
+.accept-id-button:hover {
   cursor: url("../assets/icons/pointer_unban.png"), auto;
 }
 
@@ -1079,6 +1082,39 @@ html {
   font-weight: bold;
   text-transform: uppercase;
   min-width: 0.1em;
+}
+
+.first-game-id {
+  color: #ff0000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 0 0 2em;
+  gap: 1em;
+}
+.first-game-id input {
+  max-width: 7em;
+  color: #ffffff;
+  padding: 0;
+  font-size: 2em;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  transition: all 0.1s ease;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+}
+.first-game-id input::-webkit-outer-spin-button, .first-game-id input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .go-button {
@@ -1114,6 +1150,17 @@ html {
 }
 .history-button:hover {
   background-color: rgb(99, 99, 105);
+}
+
+.accept-id-button {
+  border-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.8em;
+  border-bottom-right-radius: 0.8em;
+}
+.accept-id-button:hover {
+  background-color: rgb(76, 109, 255);
 }
 
 .hero-info {

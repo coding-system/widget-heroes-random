@@ -1,22 +1,102 @@
 // Константы для настройки
 const PLAYER_ID = 1892794016;
-const START_MATCH_ID = 8316568444;
+let START_MATCH_ID = null; // Больше не жёстко задан
 const CHECK_INTERVAL_MINUTES = 30;
 const OPENDOTA_API_BASE = "https://api.opendota.com/api";
 
 // Класс для работы с автоматическим отслеживанием героев
 class AutoHeroTracker {
    constructor() {
-      this.lastCheckedMatchId = START_MATCH_ID;
+      this.lastCheckedMatchId = null;
       this.autoBannedHeroes = [];
       this.isRunning = false;
       this.intervalId = null;
    }
 
+   // Асинхронная инициализация стартового матча
+   async initStartMatchId() {
+      // 1. Пробуем загрузить из localStorage
+      const savedStartMatchId = localStorage.getItem("startMatchId");
+      if (savedStartMatchId) {
+         START_MATCH_ID = parseInt(savedStartMatchId);
+         this.lastCheckedMatchId = START_MATCH_ID;
+         this.updateInputField(START_MATCH_ID);
+         console.log(
+            `📋 Загружен START_MATCH_ID из localStorage: ${START_MATCH_ID}`
+         );
+         return;
+      }
+      // 2. Если нет — получаем последний матч через API
+      const matches = await this.getPlayerMatches();
+      if (matches && matches.length > 0) {
+         START_MATCH_ID = matches[0].match_id;
+         this.lastCheckedMatchId = START_MATCH_ID;
+         localStorage.setItem("startMatchId", START_MATCH_ID.toString());
+         this.updateInputField(START_MATCH_ID);
+         console.log(
+            `💾 Сохранён START_MATCH_ID (последний матч): ${START_MATCH_ID}`
+         );
+      } else {
+         START_MATCH_ID = null;
+         this.lastCheckedMatchId = null;
+         this.updateInputField("");
+         console.log("❌ Не удалось получить ID последнего матча");
+      }
+   }
+
+   // Вставить ID в input
+   updateInputField(id) {
+      const input = document.getElementById("first-game-id");
+      if (input) input.value = id || "";
+   }
+
+   // Обработчик изменения input
+   handleInputChange() {
+      const input = document.getElementById("first-game-id");
+      if (!input) return;
+      input.addEventListener("change", (e) => {
+         const val = parseInt(e.target.value);
+         if (!isNaN(val)) {
+            START_MATCH_ID = val;
+            this.lastCheckedMatchId = val;
+            localStorage.setItem("startMatchId", val.toString());
+            console.log(`✏️ START_MATCH_ID обновлён пользователем: ${val}`);
+         }
+      });
+   }
+
+   // Обработчик кнопки 'ПРИНЯТЬ'
+   handleAcceptIdButton() {
+      const input = document.getElementById("first-game-id");
+      const button = document.querySelector(".accept-id-button");
+      if (!input || !button) return;
+      button.addEventListener("click", async () => {
+         const val = parseInt(input.value);
+         if (!isNaN(val)) {
+            START_MATCH_ID = val;
+            this.lastCheckedMatchId = val;
+            localStorage.setItem("startMatchId", val.toString());
+            this.updateInputField(val);
+            alert("ID первого матча обновлён!");
+            console.log(`✅ START_MATCH_ID обновлён через кнопку: ${val}`);
+
+            // Очищаем autoBannedHeroes и сохраняем
+            this.autoBannedHeroes = [];
+            await this.saveAutoBannedHeroes();
+            // Пересчитываем сыгранных героев сразу
+            await this.checkForNewMatches();
+         } else {
+            alert("Введите корректный ID матча!");
+         }
+      });
+   }
+
    // Инициализация трекера
    async init() {
       console.log("🚀 Инициализация AutoHeroTracker...");
-
+      await this.initStartMatchId();
+      this.handleInputChange();
+      this.handleAcceptIdButton();
       await this.loadAutoBannedHeroes();
       await this.checkForNewMatches();
       this.startPeriodicCheck();
@@ -566,6 +646,80 @@ class AutoHeroTracker {
       this.saveAutoBannedHeroes();
       console.log("🗑️ Список автоматически забаненных героев очищен");
    }
+
+   // Загрузка START_MATCH_ID из localStorage
+   loadStartMatchId() {
+      try {
+         const savedStartMatchId = localStorage.getItem("startMatchId");
+         if (savedStartMatchId) {
+            START_MATCH_ID = parseInt(savedStartMatchId);
+            this.lastCheckedMatchId = START_MATCH_ID;
+            console.log(
+               `📋 Загружен START_MATCH_ID из localStorage: ${START_MATCH_ID}`
+            );
+            console.log(
+               `🎯 ID нового матча из localStorage: ${START_MATCH_ID}`
+            );
+         } else {
+            // Сохраняем текущий START_MATCH_ID в localStorage
+            localStorage.setItem("startMatchId", START_MATCH_ID.toString());
+            console.log(
+               `💾 Сохранен START_MATCH_ID в localStorage: ${START_MATCH_ID}`
+            );
+            console.log(
+               `🎯 ID нового матча (первоначальный): ${START_MATCH_ID}`
+            );
+         }
+      } catch (error) {
+         console.error("❌ Ошибка при загрузке START_MATCH_ID:", error);
+      }
+   }
+
+   // Сохранение START_MATCH_ID в localStorage
+   saveStartMatchId() {
+      try {
+         localStorage.setItem("startMatchId", START_MATCH_ID.toString());
+         console.log(
+            `💾 Сохранен START_MATCH_ID в localStorage: ${START_MATCH_ID}`
+         );
+      } catch (error) {
+         console.error("❌ Ошибка при сохранении START_MATCH_ID:", error);
+      }
+   }
+
+   // Обновление START_MATCH_ID на ID последнего матча
+   async updateStartMatchIdToLatest() {
+      try {
+         console.log("🔄 Обновление START_MATCH_ID на ID последнего матча...");
+
+         const matches = await this.getPlayerMatches();
+         if (matches.length === 0) {
+            console.log("❌ Матчи не найдены");
+            return false;
+         }
+
+         // Получаем ID самого последнего матча (первый в списке)
+         const latestMatchId = matches[0].match_id;
+
+         // Обновляем START_MATCH_ID
+         START_MATCH_ID = latestMatchId;
+         this.lastCheckedMatchId = latestMatchId;
+
+         // Сохраняем в localStorage
+         this.saveStartMatchId();
+
+         console.log(`✅ START_MATCH_ID обновлен на: ${START_MATCH_ID}`);
+         return true;
+      } catch (error) {
+         console.error("❌ Ошибка при обновлении START_MATCH_ID:", error);
+         return false;
+      }
+   }
+
+   // Получение текущего START_MATCH_ID
+   getStartMatchId() {
+      return START_MATCH_ID;
+   }
 }
 
 // Создание глобального экземпляра трекера
@@ -581,11 +735,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
    // Выводим текущий список в консоль
    const heroes = autoHeroTracker.getAutoBannedHeroes();
+   const currentMatchId = autoHeroTracker.getStartMatchId();
    console.log(
-      "🎯 Автоматически забаненные герои (с матча 8316568444):",
+      `🎯 Автоматически забаненные герои (с матча ${currentMatchId}):`,
       heroes
    );
    console.log("📊 Всего героев в списке:", heroes.length);
+   console.log(`🎯 Текущий ID матча из localStorage: ${currentMatchId}`);
 });
 
 // Функции для ручного управления (можно вызывать из консоли)
@@ -598,6 +754,11 @@ window.startAutoCheck = () => autoHeroTracker.startPeriodicCheck();
 // Новая эффективная функция для обработки всех матчей
 window.processAllMatchesEfficiently = () =>
    autoHeroTracker.processAllMatchesEfficiently();
+
+// Функции для работы с START_MATCH_ID
+window.getStartMatchId = () => autoHeroTracker.getStartMatchId();
+window.updateStartMatchIdToLatest = () =>
+   autoHeroTracker.updateStartMatchIdToLatest();
 
 // Функция для экспорта данных из localStorage
 window.exportAutoBannedData = () => {

@@ -4,6 +4,7 @@ import {
    saveHeroesToLocalStorage,
    loadHeroesFromLocalStorage,
    updateAllHeroes,
+   updatePortraits,
 } from "./scripts/portraits.js";
 import { initialHeroes } from "./scripts/heroes.js";
 import { lastHeroes } from "./scripts/lastheroes.js";
@@ -133,6 +134,33 @@ function resetLocalStorage() {
    localStorage.clear();
    currentHeroesList = JSON.parse(JSON.stringify(startHeroes));
    saveHeroesToLocalStorage(currentHeroesList);
+
+   // Обновляем START_MATCH_ID на ID последнего матча
+   if (window.autoHeroTracker) {
+      window.autoHeroTracker
+         .updateStartMatchIdToLatest()
+         .then(async (success) => {
+            if (success) {
+               const newStartMatchId = window.autoHeroTracker.getStartMatchId();
+               if (window.autoHeroTracker.updateInputField) {
+                  window.autoHeroTracker.updateInputField(newStartMatchId);
+               }
+               // Очищаем autoBannedHeroes и сразу применяем сыгранных героев
+               window.autoHeroTracker.autoBannedHeroes = [];
+               await window.autoHeroTracker.saveAutoBannedHeroes();
+               await window.autoHeroTracker.checkForNewMatches();
+               console.log(
+                  "✅ START_MATCH_ID обновлен на последний матч и сыгранные герои применены"
+               );
+            } else {
+               if (window.autoHeroTracker.updateInputField) {
+                  window.autoHeroTracker.updateInputField("");
+               }
+               console.log("❌ Не удалось обновить START_MATCH_ID");
+            }
+         });
+   }
+
    console.log(
       "Весь localStorage очищен и герои сброшены к начальному состоянию!"
    );
@@ -199,7 +227,7 @@ export function applyAutoBannedHeroes() {
    );
    currentHeroesList = chellangeHeroes;
    saveHeroesToLocalStorage(currentHeroesList);
-   renderHeroes(currentHeroesList);
+   updatePortraits(currentHeroesList);
    resetHidePageTimer();
 
    console.log("✅ Применены баны из автоматически забаненных героев");
@@ -207,6 +235,26 @@ export function applyAutoBannedHeroes() {
 
    return currentAutoBannedHeroes;
 }
+
+// Экспортируем функцию для получения информации о текущем состоянии
+export function getSystemInfo() {
+   const info = {
+      startMatchId: window.autoHeroTracker
+         ? window.autoHeroTracker.getStartMatchId()
+         : "Недоступен",
+      autoBannedHeroesCount: window.autoHeroTracker
+         ? window.autoHeroTracker.getAutoBannedHeroes().length
+         : 0,
+      currentHeroesCount: currentHeroesList.length,
+      playerId: 1892794016,
+   };
+
+   console.log("📊 Информация о системе:", info);
+   return info;
+}
+
+// Экспортируем функцию в window для использования в консоли
+window.getSystemInfo = getSystemInfo;
 
 // Экспортируем функцию в window для использования в консоли
 window.applyAutoBannedHeroes = applyAutoBannedHeroes;

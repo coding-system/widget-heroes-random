@@ -86,7 +86,8 @@ html {
 .ban-all-button,
 .unban-all-button,
 .reset-button,
-.history-button {
+.history-button,
+.accept-id-button {
    cursor: url("../assets/icons/default.png"), auto;
    display: flex;
    justify-content: center;
@@ -137,6 +138,38 @@ html {
    }
 }
 
+.first-game-id {
+   color: #ff0000;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: fit-content;
+   padding: 0 0 0 2em;
+   gap: 1em;
+   & input {
+      max-width: 7em;
+      color: #ffffff;
+      padding: 0;
+      font-size: 2em;
+      font-weight: bold;
+      border: none;
+      outline: none;
+      transition: all 0.1s ease;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+         appearance: none;
+         -moz-appearance: textfield;
+         -webkit-appearance: none;
+         margin: 0;
+      }
+   }
+}
+
 .go-button {
    display: none;
    &:hover {
@@ -169,6 +202,16 @@ html {
    margin-left: 5em;
    &:hover {
       background-color: rgb(99, 99, 105);
+   }
+}
+.accept-id-button {
+   border-radius: 0;
+   border-top-left-radius: 0;
+   border-bottom-left-radius: 0;
+   border-top-right-radius: 0.8em;
+   border-bottom-right-radius: 0.8em;
+   &:hover {
+      background-color: rgb(76, 109, 255);
    }
 }
 
