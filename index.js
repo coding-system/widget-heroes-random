@@ -4,6 +4,7 @@ import {
    saveHeroesToLocalStorage,
    loadHeroesFromLocalStorage,
    updateAllHeroes,
+   updatePortraits,
 } from "./scripts/portraits.js";
 import { initialHeroes } from "./scripts/heroes.js";
 import { lastHeroes } from "./scripts/lastheroes.js";
@@ -29,10 +30,7 @@ import {
    loadHidingsCountFromStorage,
 } from "./scripts/localstorage.js";
 // import { hints, createHint, initHints, showHint } from "./scripts/hints.js";
-import {
-   loadBannedHistory,
-   createChellangeHeroes,
-} from "./scripts/bannedHistory.js";
+import { createChellangeHeroes } from "./scripts/bannedHistory.js";
 
 export let currentHeroesList = [];
 export let playedHeroesList = [];
@@ -50,9 +48,22 @@ window.addEventListener("DOMContentLoaded", async () => {
    renderHeroes(currentHeroesList);
    showPageBody(200);
 
-   // Загружаем playedHeroesList из bannedHistory.json
-   playedHeroesList = await loadBannedHistory();
-   console.log("Загруженный список сыгранных героев:", playedHeroesList);
+   // Ждем инициализации autoHeroTracker и загружаем автоматически забаненных героев
+   // playedHeroesList теперь будет содержать автоматически забаненных героев
+   setTimeout(async () => {
+      if (window.autoHeroTracker) {
+         playedHeroesList = window.autoHeroTracker.getAutoBannedHeroes();
+         console.log(
+            "Загруженный список автоматически забаненных героев:",
+            playedHeroesList
+         );
+      } else {
+         console.log(
+            "AutoHeroTracker еще не инициализирован, используем пустой список"
+         );
+         playedHeroesList = [];
+      }
+   }, 1000); // Даем время на инициализацию autoHeroTracker
 });
 
 console.log(startHeroes);
@@ -63,8 +74,8 @@ let lastChosenItem = null;
 const pageBody = document.querySelector(".body");
 export const navPanel = document.querySelector(".nav-panel");
 const goBtn = document.querySelector(".go-button");
-const banAllButton = document.querySelector(".unban-all-button");
-const unbanAllButton = document.querySelector(".ban-all-button");
+const banAllButton = document.querySelector(".ban-all-button");
+const unbanAllButton = document.querySelector(".unban-all-button");
 const resetButton = document.querySelector(".reset-button");
 const historyButton = document.querySelector(".history-button");
 
@@ -94,12 +105,8 @@ resetButton.addEventListener("click", () => {
 });
 
 historyButton.addEventListener("click", () => {
-   const chellangeHeroes = createChellangeHeroes(startHeroes, playedHeroesList);
-   currentHeroesList = chellangeHeroes;
-   saveHeroesToLocalStorage(currentHeroesList);
-   renderHeroes(currentHeroesList);
-   resetHidePageTimer();
-   console.log("Применены баны из истории");
+   // Применяем баны из автоматически забаненных героев
+   applyAutoBannedHeroes();
 });
 
 document.addEventListener("keyup", handleKeyPressRoll);
@@ -127,6 +134,33 @@ function resetLocalStorage() {
    localStorage.clear();
    currentHeroesList = JSON.parse(JSON.stringify(startHeroes));
    saveHeroesToLocalStorage(currentHeroesList);
+
+   // Обновляем START_MATCH_ID на ID последнего матча
+   if (window.autoHeroTracker) {
+      window.autoHeroTracker
+         .updateStartMatchIdToLatest()
+         .then(async (success) => {
+            if (success) {
+               const newStartMatchId = window.autoHeroTracker.getStartMatchId();
+               if (window.autoHeroTracker.updateInputField) {
+                  window.autoHeroTracker.updateInputField(newStartMatchId);
+               }
+               // Очищаем autoBannedHeroes и сразу применяем сыгранных героев
+               window.autoHeroTracker.autoBannedHeroes = [];
+               await window.autoHeroTracker.saveAutoBannedHeroes();
+               await window.autoHeroTracker.checkForNewMatches();
+               console.log(
+                  "✅ START_MATCH_ID обновлен на последний матч и сыгранные герои применены"
+               );
+            } else {
+               if (window.autoHeroTracker.updateInputField) {
+                  window.autoHeroTracker.updateInputField("");
+               }
+               console.log("❌ Не удалось обновить START_MATCH_ID");
+            }
+         });
+   }
+
    console.log(
       "Весь localStorage очищен и герои сброшены к начальному состоянию!"
    );
@@ -165,3 +199,67 @@ export function hidePageBody(delay = 0) {
 
 loadHidingsCountFromStorage();
 loadDurationFromStorage();
+
+// Функция для обновления списка автоматически забаненных героев
+export function updateAutoBannedHeroesList() {
+   if (window.autoHeroTracker) {
+      playedHeroesList = window.autoHeroTracker.getAutoBannedHeroes();
+      console.log(
+         "📋 Список автоматически забаненных героев обновлен:",
+         playedHeroesList
+      );
+      return playedHeroesList;
+   } else {
+      console.log("❌ AutoHeroTracker не доступен");
+      return [];
+   }
+}
+
+// Функция для принудительного применения банов из автоматически забаненных героев
+export function applyAutoBannedHeroes() {
+   // Обновляем список автоматически забаненных героев
+   const currentAutoBannedHeroes = updateAutoBannedHeroesList();
+
+   // Применяем баны
+   const chellangeHeroes = createChellangeHeroes(
+      startHeroes,
+      currentAutoBannedHeroes
+   );
+   currentHeroesList = chellangeHeroes;
+   saveHeroesToLocalStorage(currentHeroesList);
+   updatePortraits(currentHeroesList);
+   resetHidePageTimer();
+
+   console.log("✅ Применены баны из автоматически забаненных героев");
+   console.log(`📊 Забаннено героев: ${currentAutoBannedHeroes.length}`);
+
+   return currentAutoBannedHeroes;
+}
+
+// Экспортируем функцию для получения информации о текущем состоянии
+export function getSystemInfo() {
+   const info = {
+      startMatchId: window.autoHeroTracker
+         ? window.autoHeroTracker.getStartMatchId()
+         : "Недоступен",
+      autoBannedHeroesCount: window.autoHeroTracker
+         ? window.autoHeroTracker.getAutoBannedHeroes().length
+         : 0,
+      currentHeroesCount: currentHeroesList.length,
+      playerId: 1892794016,
+   };
+
+   console.log("📊 Информация о системе:", info);
+   return info;
+}
+
+// Экспортируем функцию в window для использования в консоли
+window.getSystemInfo = getSystemInfo;
+
+// Экспортируем функцию в window для использования в консоли
+window.applyAutoBannedHeroes = applyAutoBannedHeroes;
+
+// Экспортируем функцию в window для использования в консоли
+window.updateAutoBannedHeroesList = updateAutoBannedHeroesList;
+
+console.log(startHeroes);

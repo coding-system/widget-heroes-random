@@ -1,0 +1,15 @@
+$trns-default: 0.05;
+$trns-banned: 0.05;
+$trns-involved: 0.3;
+$trns-not-involved: 0.5;
+$trns-retired: 0.3;
+$trns-final: 0.3;
+$trns-global-overlay: 0.3;
+$default-cursor: url('../assets/icons/default.png'), auto;
+$pointer-cursor: url('../assets/icons/pointer_unban.png'), auto;
+$pointer_ban-cursor: url('../assets/icons/pointer_ban.png'), auto;
+$pointer_unban-cursor: url('../assets/icons/pointer_unban.png'), auto;
+$heroes_item_border-opacity: 1;
+$heroes_item_shadow-color: #0c1013;
+$heroes_item_shadow-y: 0.3em;
+$heroes_item_shadow-extra: 0.015em;
