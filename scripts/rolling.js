@@ -234,7 +234,7 @@ export function updateHeroInfo() {
    }
 
    if (heroInfoLoadout && currentRandomHero.loadout) {
-      heroInfoLoadout.style.backgroundImage = `url("../../assets/heroes/loadout/${currentRandomHero.loadout}")`;
+      heroInfoLoadout.style.backgroundImage = `url("https://widget.cheberem.ru/assets/heroes/loadout/${currentRandomHero.loadout}")`;
    }
 
    if (heroInfoVideo && videoSources?.length >= 2) {

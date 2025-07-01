@@ -11,19 +11,12 @@ export async function loadBannedHistory() {
 }
 
 // Функция для создания массива героев с забаненными героями
-// startHeroes - начальный список всех героев
-// bannedHeroesList - список героев, которые нужно забаннить
-export function createChellangeHeroes(startHeroes, bannedHeroesList) {
+export function createChellangeHeroes(startHeroes, playedHeroesList) {
    const chellangeHeroes = JSON.parse(JSON.stringify(startHeroes));
-
-   // Проходим по всем героям и банним тех, кто есть в списке забаненных
    chellangeHeroes.forEach((hero) => {
-      if (bannedHeroesList.includes(hero.name)) {
-         hero.selected = false; // Банним героя (selected = false означает забаннен)
-         console.log(`🚫 Забаннен герой: ${hero.name}`);
+      if (playedHeroesList.includes(hero.name)) {
+         hero.selected = false;
       }
    });
-
-   console.log(`📊 Всего забаннено героев: ${bannedHeroesList.length}`);
    return chellangeHeroes;
 }
